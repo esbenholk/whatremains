@@ -9,17 +9,24 @@ Template Name: What Remains Landing Page Template
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff" as="font" type="font/woff2" crossorigin="anonymous">
 
     <?php  
-        $id ='13';
+        $id ='3868';
         $sitename = esc_html( get_post_meta(  $id ,'sitename', true ) ); 
         $sitedates = esc_html( get_post_meta( $id , 'sitedates', true ) ); 
         $homelink= esc_html( "/what-remains" ); 
         $next_premiere_date = esc_html( get_post_meta( $id , 'next_premiere_date', true ) );
         $is_festival_live = esc_html( get_post_meta( $id, 'is_festival_live', true ) );
-
-        
+        $link_to_text = esc_html( get_post_meta( $id, 'link_to_text', true ) );
+        $link_to_program = esc_html( get_post_meta( $id, 'link_to_program', true ) );
+        $all_artists = esc_html( get_post_meta( $id, 'all_artists', true ) );
     ?>
+
+
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
 	<title><?php echo $sitename ?></title>
@@ -35,9 +42,7 @@ Template Name: What Remains Landing Page Template
     <div class="standard_button_look">
         <h3><?php echo $sitedates ?></h3>
     </div>
-    <div class="standard_button_look">
-        <a href="#program" ><h2 class="can_be_clicked">CREATORS</h2></a>
-    </div>
+
 </div>
 
 <body <?php body_class(); ?>>
@@ -69,29 +74,8 @@ Template Name: What Remains Landing Page Template
         
 
         ?>
-      
 
-            <div id="vimeo-wrapper">
-                 <?php if($is_trailer_currently_featured == "yes"){?>
-                    <iframe src="https://player.vimeo.com/video/<?php echo $video_url?>?background=1&autoplay=1&loop=1&byline=0&title=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="autoplay"></iframe>
-                <? } else {?>
-                    <img src="<?php echo $thumbnail_src?>" />           
-                <?php } ?>
-                
-                <div class="gradient_overlay">
-
-                    <div class="phase_details">  
-                        <h1><?php echo $fase_headline ?></h1>
-                        <h2><?php echo $fase_artists ?></h2>
-                    </div>
-
-                </div>
-
-                
-
-            </div>
-    
-    
+        <div class="spacer"></div>
         <div class="content">
             <h1 class="entry-title"><?php echo get_the_title(); ?></h1>
       
@@ -111,14 +95,31 @@ Template Name: What Remains Landing Page Template
 </div>
 
 <div class="what_remains_footer">
-    <?php if( $next_premiere_date  != null) {?>
-        <div class="standard_button_look">
-            <h3><?php echo $next_premiere_date  ?></h3>
-        </div>                   
-     <?php }  ?> 
-
-    <div class="standard_button_look" >
+    <div class="container">
+        <?php if( $next_premiere_date  != null) {?>
+            <div class="standard_button_look">
+                <h3><?php echo $next_premiere_date  ?></h3>
+            </div>                   
+        <?php }  ?> 
+        <?php if( $link_to_program ){ ?>
+                            <div class="standard_button_look">
+                                <a href="/about-what-remains"><h2 class="can_be_clicked"><?php echo $link_to_program?></h2></a>
+                            </div>
+             <?php } else {?>
+                     <div class="standard_button_look">
+                    <a href="/about-what-remains" ><h2 class="can_be_clicked">ABOUT WHAT REMAINS</h2></a>
+                 </div> 
+         <?php } ?> 
+         <div class="standard_button_look">
         <a href="<?php  echo $homelink ?>" ><h2 class="can_be_clicked"><?php echo $sitename ?></h2></a>
+         </div>
+
+
+
+    </div>
+    <div class="container">
+        <img src="http://videoclub.org.uk/wp2018/wp-content/uploads/2022/03/videoclublogo.png" />           
+        <img src="http://videoclub.org.uk/wp2018/wp-content/uploads/2022/03/lottery_Logo_White-CMYK.png" />
     </div>
 </div>
 

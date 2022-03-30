@@ -2,41 +2,46 @@
 
 
 <?php    
-
     $current_video = get_the_ID();
   	$args = array(  
-      'post_type' => array('video_post', 'talk_post'),
+      'post_type' => array('video_post'),
       'post_status' => 'publish',
       'posts_per_page' => -1, 
-      'numberposts' => 2,
-      'meta_query' => array(
-          array(
-              'key' => 'specific_date', // I've set this variable according to your examples
-              'value' => date("Y-m-d"),
-              'type' => 'DATE',
-              'compare' => '>=' // Or > if strictly bigger dates are required
-          )
-      )
+      'orderby'           => array( 'meta_value_num' => 'ASC' ),
+      'meta_key' => 'specific_date',
+ 
     );
   $loop = new WP_Query( $args ); ?>
 
+  
 <?php while ( $loop->have_posts() ) : $loop->the_post(); 
                             $post->ID = get_the_ID();
                             $is_currently_featured = esc_html( get_post_meta( $post->ID, 'is_currently_featured', true ) ); 
                             $video_title = esc_html( get_post_meta( $post->ID, 'video_title', true ) ); 
+                            $outputString = preg_replace('/\s+/', '', $video_title); 
                             $video_creator = esc_html( get_post_meta( $post->ID, 'video_creator', true ) ); 
                             $thumbnail_src = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
                             $sign_up_link = esc_html( get_post_meta( $post->ID, 'sign_up_link', true ) ); 
                             $talk_date = esc_html( get_post_meta( $post->ID, 'talk_date', true ) );
                             $duration = esc_html( get_post_meta(  $post->ID, 'video_duration', true ) );
 
+                        
+
                             $link = get_permalink( $post->ID );
+
+                          
                            ?>
 
-                                    <div class="program_item">
+                                    <div class="program_item" id="<?php echo  $outputString ?>">
                                     <div class="thumbnail" id="<?php echo  $post->ID ?> ">
 
-                                        <img src="<?php echo $thumbnail_src?>" /> 
+                                     
+                                        <?php if( $is_currently_featured == "feature" ||  $is_currently_featured == "has been featured"){?>
+                                            <a href="<?php echo $link?>"> <img src="<?php echo $thumbnail_src?>" /></a>
+                                        <?php } else {?>
+                                            <img src="<?php echo $thumbnail_src?>" />
+                                        <?php } ?>
+                                    
                                         
                                         <div class="gradient_overlay"> </div>   
 
@@ -84,17 +89,16 @@
 
 
 
-                                    <div class="contentcolumn">
-                                        <?php the_excerpt(); ?>
+                                    <div class="contentcolumn blockcontent">
+                                        <?php the_content(); ?>
                                     </div>
                                 </div>
 
                                     
+<?php endwhile;
 
-                            <?php
 
-                           
-              
-                    
-                        endwhile;
-                    wp_reset_postdata(); ?>
+
+
+
+wp_reset_postdata(); ?>

@@ -23,7 +23,7 @@
         $should_show_on_front_page =  esc_html( get_post_meta( $post->ID, 'should_show_on_front_page', true ) ); 
                            
         
-        if( $is_currently_feature=="feature" && $post->ID != $current_video || $should_show_on_front_page == "yes" && $post->ID != $current_video){?>
+        if( $post->ID != $current_video ){?>
             <div class="thumbnail">
                 <?php if( $is_currently_featured == "feature" ||  $is_currently_featured == "has been featured" || $should_show_on_front_page == "yes"){?>
                     <a href="<?php echo $link?>"> <img src="<?php echo $thumbnail_src?>" /></a>

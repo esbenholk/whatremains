@@ -1,6 +1,48 @@
+/* @font-face {
+    font-family: 'Franklin Gothic Book';
+    src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-BookItalic.woff2') format('woff2'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-BookItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
 
+@font-face {
+    font-family: 'Franklin Gothic';
+    src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-HeavyItalic.woff2') format('woff2'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-HeavyItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+} */
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+@font-face {
+    font-family: 'Franklin Gothic Book';
+    src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff2') format('woff2'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Franklin Gothic';
+    src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff2') format('woff2'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* @font-face {
+    font-family: 'Franklin Gothic';
+    src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-MediumItalic.woff2') format('woff2'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+} */
+
 
 
 :root {
@@ -14,7 +56,7 @@
 * {
     color:  var( --mainbrandcolor);
     /* box-sizing: border-box; */
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Franklin Gothic';
 }
 
 button{
@@ -34,41 +76,42 @@ body{
 }
 
 h1{
-    font-family: 'Reem Kufi';
+    font-family: 'Franklin Gothic';
     font-style: normal;
     font-weight: 700;
     font-size: 60px;
 }
 h2{
-    font-family: 'Roboto';
+    font-family: 'Franklin Gothic';
     font-style: normal;
     font-weight: 400;
     font-size: var(--smallSize);
     margin: 0;
 }
 h3{
-    font-family: 'Roboto';
+    font-family: 'Franklin Gothic';
     font-style: normal;
     font-weight: 400;
     font-size: var(--smallSize);
 }
 p{
-    font-family: 'Roboto';
+    font-family: 'Franklin Gothic';
     font-style: normal;
     font-weight: 400;
     font-size: var(--smallSize);
     text-align: justify;
 }
+h4{
+    text-align: justify;
+}
 
 
 .blockcontent h2{
-    font-family: 'Reem Kufi';
     font-style: normal;
     font-weight: 700;
     font-size: 40px;
 }
 .blockcontent h3{
-    font-family: 'Reem Kufi';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
@@ -153,13 +196,38 @@ p{
     z-index: 2;
 } 
 .what_remains_footer{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: row;
+    z-index: 2;
+    width: 100%;
+} 
+@media screen and (max-width: 700px) {
+    .what_remains_footer{
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        z-index: 2;
+        width: 100%;
+    } 
+}
+
+.what_remains_footer .container{ 
     margin: 24px var(--regPadding);
-    margin-top: 600px;
+    max-width: 350px;
     position: relative;
     display: flex;
     flex-direction: column;
     z-index: 2;
 } 
+.what_remains_footer div img{ 
+    max-width: 100%;
+    margin-top: var(--regPadding);
+} 
+
 
 
 
@@ -174,11 +242,25 @@ p{
     left: 0;
     width: 100%;
     height: 100%;
-    /* min-height: 800px; */
+    min-height: 800px;
     z-index: 1;
     pointer-events: none;
     overflow: hidden;
  }
+ .livestream-container{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    min-height: 800px;
+
+ }
+
  #vimeo-wrapper iframe {
     width: 100vw;
     height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
@@ -200,14 +282,38 @@ p{
     object-fit: cover;
     /* transform: translate(-50%, -50%); */
  }
+ .cover{
+     width: 100%;
+     max-width: 100%;
+     object-fit: cover;
+ }
+.coverVideo{
+    padding:56% 0 0 0;
+    position:relative;
+} @media screen and (min-width: 1050px) {
+    .coverVideo{
+        padding:33% 0 0 0;
+        position:relative;
+    } 
+}
+.cover{
+     max-height: 70vh;
+ }
 
- .gradient_overlay{
+
+.gradient_overlay{
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 50%;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0,0,0)), to(rgba(0, 0, 0,1)));
+    pointer-events: none;
 }
+.phase_details h1:nth-child(1),
+.entry-title h1:nth-child(1){
+    margin-bottom: 0 !important;
+}
+
 
 .phase_details{
     position: absolute;
@@ -217,7 +323,10 @@ p{
 .phase_details h1{
     margin: 0;
     margin-bottom: var(--regPadding);
+    max-width: 600px;
 }
+
+
 
 .videoplayer{
     width: 100%;
@@ -231,12 +340,24 @@ p{
     margin: 10%;
 }
 
-
-
 .entry-title{
     padding-bottom: var(--regPadding);
-    border-bottom: 5px solid var(--mainbrandcolor);
+    margin-bottom: 40px;
 }
+
+
+
+.phase_details h1:nth-child(2),
+.entry-title h1:nth-child(2){
+   font-size: 50px;
+}
+
+
+.entry-title h1:nth-child(3){
+    font-size: 30px;
+    max-width: 500px;
+ }
+
 .content-navigation{
     display: flex;
     flex-direction: column;
@@ -267,7 +388,7 @@ p{
         margin: 17px;
     }
     .columns{
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
     .columns .contentcolumn,
      .columns .videocolumn{
@@ -293,9 +414,10 @@ p{
     max-width: 100%;
     width: 100%;
     min-height: 200px;
+    margin-bottom: 50px;
 }@media screen and (max-width: 900px) {
     .thumbnail {
-      padding-bottom: 60px;
+      padding-bottom: 110px;
     }
     .thumbnail .gradient_overlay{
         background-image: linear-gradient(180deg, rgba(0, 0,0,0), rgba(0, 0, 0,1)55%);
@@ -320,6 +442,25 @@ p{
 .program_item{
     margin-top: var(--regPadding);
     margin-bottom: 50px;
+}
+
+.program_row{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.program_row .thumbnail{
+   width: 49%;
+}@media screen and (max-width: 1300px) {
+    .program_row .thumbnail{
+        padding-bottom: 110px;
+     }
+}@media screen and (max-width: 1050px) {
+    .program_row .thumbnail{
+        width: 100%;
+        padding-bottom: 0px;
+     }
 }
 
 

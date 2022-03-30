@@ -8,10 +8,18 @@ Template Name: Video Post Template
 
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff" as="font" type="font/woff2" crossorigin="anonymous">
+
 
     <?php  
-        $id ='13';
+        $id ='3868';
+            //  $id ='13';
         $sitename = esc_html( get_post_meta(  $id ,'sitename', true ) ); 
         $sitedates = esc_html( get_post_meta( $id , 'sitedates', true ) ); 
         $homelink= esc_html( "/what-remains" ); 
@@ -34,7 +42,9 @@ Template Name: Video Post Template
 </head>
 <body <?php body_class(); ?>>
 
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); 
+                $post->ID = get_the_ID();
+                $blurb = esc_html( get_post_meta( get_the_ID(), 'the_blurb', true ) ); ?>
 
     <div class="what_remains_header_single_post">
         <div class="standard_button_look">
@@ -50,16 +60,22 @@ Template Name: Video Post Template
             <div class="standard_button_look">
                 <h3>   <?php echo esc_html( get_post_meta( get_the_ID(), 'video_duration', true ) ); ?></h3>
             </div>
-
+        
         </div>
-        <h3><?php echo esc_html( get_post_meta( get_the_ID(), 'the_blurb', true ) ); ?></h3>
+
+        <?php if ($blurb) {?>
+            <h3><?php  echo  $blurb?></h3>
+        <?php } ?>
+ 
+  
+       
     </div>
 
     <div id="primary">
         <div id="content" role="main">
             
             <?php if(  $is_currently_featured == "feature"){?>
-                        <div style="padding:56.6% 0 0 0;position:relative;">
+                        <div class="coverVideo">
                             <iframe id="videoplayer"src="<?php echo $video_url?>?loop=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allow="fullscreen;autoplay; encrypted-media;" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;">
                             </iframe>
                             <button id="playbutton" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
@@ -69,16 +85,11 @@ Template Name: Video Post Template
                                     </svg>
                             </button>
                             <img class="cover" id="cover" style="display:none;"src="<?php echo $thumbnail_src?>" />    
-                  
-
                         </div>
                         <script src="https://player.vimeo.com/api/player.js"></script>     
             
-
-
-
                      <? } else {?>
-                        <img src="<?php echo $thumbnail_src?>" />           
+                        <img class="cover" id="cover" src="<?php echo $thumbnail_src?>" />    
             <?php } ?>
 
 
@@ -87,11 +98,7 @@ Template Name: Video Post Template
                 <div class="blockcontent">
                     <?php the_content(); ?>
                 </div>                
-                <div class="spacer"></div>
-
-                <div class="standard_button_look">
-                    <a href="/about-what-remains#program" ><h2 class="can_be_clicked">CREATORS</h2></a>
-                </div>
+          
 
                 <div class="columns">
                     <div class="contentcolumn">
@@ -102,7 +109,13 @@ Template Name: Video Post Template
                             <h1><?php echo $featured_films_headline?></h1>
                             <?php echo do_shortcode('[featured_videos]'); ?>
                         
-                    <?php }?>
+                         <?php }?>
+                         <?php if( $is_festival_live != "yes"){?>
+                            <div class="spacer"></div>
+                            <h1><?php echo  $featured_films_headline?></h1>
+                            <?php echo do_shortcode('[all_videos]'); ?>
+                    
+                   <?php }?>
                   
                 </div>
                 </div>
@@ -114,21 +127,30 @@ Template Name: Video Post Template
     <?php endwhile; endif; ?>
     <?php wp_reset_query(); ?>
 
+
     <div class="what_remains_footer">
+    <div class="container">
         <?php if( $next_premiere_date  != null) {?>
             <div class="standard_button_look">
                 <h3><?php echo $next_premiere_date  ?></h3>
             </div>                   
-        <?php }  ?> 
+        <?php }  ?>
 
-        <div class="standard_button_look">
-                    <a href="/about-what-remains" ><h2 class="can_be_clicked">ABOUT WHAT REMAINS</h2></a>
-        </div>
+        <?php if($link_to_text &&  $is_festival_live == "yes"){?>
+                    <div class="standard_button_look">
+                        <a href="/what-remains-text" ><h2 class="can_be_clicked"><?php echo $link_to_text?></h2></a>
+                    </div>
+        <?php }?>
 
-        <div class="standard_button_look">
+        <div class="standard_button_look" >
             <a href="<?php  echo $homelink ?>" ><h2 class="can_be_clicked"><?php echo $sitename ?></h2></a>
         </div>
     </div>
+    <div class="container">
+        <img src="http://videoclub.org.uk/wp2018/wp-content/uploads/2022/03/videoclublogo.png" />           
+        <img src="http://videoclub.org.uk/wp2018/wp-content/uploads/2022/03/lottery_Logo_White-CMYK.png" />
+    </div>
+</div>
 
 </body>
 

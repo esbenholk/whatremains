@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+
+
     var videocover = document.getElementById("vimeo-wrapper");
     var iframe = document.getElementById("videoplayer");
   
@@ -42,7 +44,12 @@ document.addEventListener("DOMContentLoaded", function() {
     player.on('ended', function() {
         console.log('Finished.');
     });
- 
+
+
+
+
+
+
 
     $('a[href*="#"]')
     // Remove links that don't actually link to anything
@@ -81,5 +88,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       }
     });
+
+
+
 });
+
+
+
 
