@@ -9,6 +9,9 @@
       'meta_key' => 'specific_date',
     );
   $loop = new WP_Query( $args ); 
+
+  $is_next_video = false;
+  
 ?>
 
     <?php while ( $loop->have_posts() ) : $loop->the_post(); 
@@ -20,10 +23,10 @@
         $video_creator = esc_html( get_post_meta( $post->ID, 'video_creator', true ) ); 
         $thumbnail_src = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
         $link = get_permalink( $post->ID );
-        $should_show_on_front_page =  esc_html( get_post_meta( $post->ID, 'should_show_on_front_page', true ) ); 
-                           
+        $should_show_on_front_page =  esc_html( get_post_meta( $post->ID, 'should_show_on_front_page', true ) );        
         
-        if( $post->ID != $current_video ){?>
+        
+        if(  $is_next_video ){?>
             <div class="thumbnail">
                 <?php if( $is_currently_featured == "feature" ||  $is_currently_featured == "has been featured" || $should_show_on_front_page == "yes"){?>
                     <a href="<?php echo $link?>"> <img src="<?php echo $thumbnail_src?>" /></a>
@@ -44,7 +47,14 @@
                 </div>
             </div>
 
-        <?php }
+        <?php $is_next_video = false; } ?>
+                   
+  
+        <?php
+
+        if ($post->ID == $current_video ){
+            $is_next_video = true;
+        }
             
 endwhile;?>
 

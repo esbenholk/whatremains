@@ -143,6 +143,7 @@ h4{
   display: inline-block;
   margin-bottom: var(--regPadding);
   margin-right: var(--regPadding);
+
 }
 
 .standard_button_look h2{
@@ -153,7 +154,7 @@ h4{
    border: 5px solid var( --mainbrandcolor);;
    border-radius: 193px;
    width: auto;
-   white-space: nowrap;
+   /* white-space: nowrap; */
 }
 
 .standard_button_look h3{
@@ -164,7 +165,7 @@ h4{
     border: 5px solid var( --mainbrandcolor);;
     border-radius: 193px;
     width: auto;
-    white-space: nowrap;
+    /* white-space: nowrap; */
  }
 .can_be_clicked{
     box-shadow: -1px 0px 9px 3px var( --mainbrandcolor);;

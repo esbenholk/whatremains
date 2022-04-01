@@ -21,8 +21,8 @@ Template Name: What Remains Landing Page Template
 
 
     <?php  
-        $id ='13';
-        // $id ='3868';
+        // $id ='13';
+        $id ='3868';
         $sitename = esc_html( get_post_meta(  $id ,'sitename', true ) ); 
         $sitedates = esc_html( get_post_meta( $id , 'sitedates', true ) ); 
         $homelink= esc_html( "/what-remains" ); 

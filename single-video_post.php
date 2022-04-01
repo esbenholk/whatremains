@@ -44,7 +44,10 @@ Template Name: Video Post Template
 
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); 
                 $post->ID = get_the_ID();
-                $blurb = esc_html( get_post_meta( get_the_ID(), 'the_blurb', true ) ); ?>
+                $blurb = esc_html( get_post_meta( get_the_ID(), 'the_blurb', true ) ); 
+                $video_duration = esc_html( get_post_meta( get_the_ID(), 'video_duration', true ) ); ?>
+
+
 
     <div class="what_remains_header_single_post">
         <div class="standard_button_look">
@@ -57,9 +60,13 @@ Template Name: Video Post Template
             <div class="standard_button_look">
                 <h3><?php echo esc_html( get_post_meta( $post->ID, 'video_title', true ) );  ?></h3>
             </div>
-            <div class="standard_button_look">
-                <h3>   <?php echo esc_html( get_post_meta( get_the_ID(), 'video_duration', true ) ); ?></h3>
-            </div>
+      
+            
+            <?php if ( $video_duration) {?>
+                <div class="standard_button_look">
+                        <h3>   <?php echo  $video_duration?></h3>
+                </div>
+            <?php } ?>
         
         </div>
 
@@ -97,6 +104,8 @@ Template Name: Video Post Template
                 <!-- Display movie review contents -->
                 <div class="blockcontent">
                     <?php the_content(); ?>
+                    <?php next_post_link( '<strong>%link</strong>' ); ?>
+
                 </div>                
           
 
@@ -108,12 +117,14 @@ Template Name: Video Post Template
                             <div class="spacer"></div>
                             <h1><?php echo $featured_films_headline?></h1>
                             <?php echo do_shortcode('[featured_videos]'); ?>
-                        
+                        	
+
                          <?php }?>
                          <?php if( $is_festival_live != "yes"){?>
                             <div class="spacer"></div>
+
                             <h1><?php echo  $featured_films_headline?></h1>
-                            <?php echo do_shortcode('[all_videos]'); ?>
+                            <?php echo do_shortcode('[next_video]'); ?>
                     
                    <?php }?>
                   

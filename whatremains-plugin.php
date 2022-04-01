@@ -73,7 +73,7 @@ function create_talk_post() {
                 'view_item' => 'View Talk Page',
                 'search_items' => 'Search Talks',
             ),
- 
+            'rewrite' => array('slug' => "what-remains-events"),
             'public' => true,
             'menu_position' => 1,
             'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt'),
@@ -165,6 +165,7 @@ function display_video_meta_box( $video_post ) {
             <td style="width: 150px">number for sorting *required!!!!! lowest number appears first in program</td>
             <td><input type="number" size="80" name="specific_date" value="<?php echo $specific_date ?>" /></td>
         </tr>  
+
     </table>
     <?php
 }
@@ -455,6 +456,20 @@ function include_template_function( $template_path ) {
             }
         }
     }
+
+
+    if ( get_post_type() == 'talk_post' ) {
+        if ( is_single() ) {
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'single-video_post.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+                $template_path = plugin_dir_path( __FILE__ ) . '/single-video_post.php';
+            }
+        }
+    }
+
     if ( is_page( 'what-remains' ) ) {
         if ( $theme_file = locate_template( array ( 'whatremains-landingpage.php' ) ) ) {
             $template_path = $theme_file;
@@ -525,6 +540,20 @@ function show_all_videos(  ) {
     $content = ob_get_clean();
     return $content;
 }
+
+
+add_shortcode( 'next_video', 'show_next_video' );
+function show_next_video(  ) {
+    ob_start();
+
+    include(plugin_dir_path( __FILE__ ) . '/whatremains-next-video.php');
+
+    // save and return the content that has been output
+
+    $content = ob_get_clean();
+    return $content;
+}
+
 
 
 add_shortcode( 'featured_talks', 'show_featured_talks' );
