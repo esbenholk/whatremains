@@ -5,8 +5,8 @@
       'post_type' => 'video_post',
       'post_status' => 'publish',
       'posts_per_page' => -1, 
-      'orderby' => 'title', 
-      'order' => 'ASC', 
+      'orderby'           => array( 'meta_value_num' => 'ASC' ),
+      'meta_key' => 'specific_date',
     );
   $loop = new WP_Query( $args ); 
 ?>
@@ -24,7 +24,7 @@
                            
         
         if( $is_currently_feature=="feature" && $post->ID != $current_video || $should_show_on_front_page == "yes" && $post->ID != $current_video){?>
-            <div class="thumbnail">
+            <div class="thumbnail list-item">
                 <?php if( $is_currently_featured == "feature" ||  $is_currently_featured == "has been featured" || $should_show_on_front_page == "yes"){?>
                     <a href="<?php echo $link?>"> <img src="<?php echo $thumbnail_src?>" /></a>
                 <?php } else {?>

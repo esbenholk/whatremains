@@ -10,14 +10,19 @@ Template Name: What Remains Landing Page Template
 <html <?php language_attributes(); ?>>
 
 <head Access-Control-Allow-Origin>
-    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff" as="font" type="font/woff2" crossorigin="anonymous">
+
     <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff" as="font" type="font/woff2" crossorigin="anonymous">
+   
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
+    
     <?php  
-        $id ='3868';
-        // $id ='13';
+        // $id ='3868';
+        $id ='13';
         $sitename = esc_html( get_post_meta(  $id ,'sitename', true ) ); 
         $sitedates = esc_html( get_post_meta( $id , 'sitedates', true ) ); 
         $homelink= esc_html( "/what-remains" ); 
@@ -160,6 +165,12 @@ Template Name: What Remains Landing Page Template
                     <div class="spacer"></div>
 
                     <div class="content-navigation">
+
+                    <?php if($link_to_text){?>
+                        <div class="standard_button_look">
+                            <a href="/what-remains-text" ><h2 class="can_be_clicked"><?php echo $link_to_text?></h2></a>
+                        </div>
+                        <?php }?>
             
                         <?php if( $link_to_program ){ ?>
                             <div class="standard_button_look">
@@ -171,24 +182,18 @@ Template Name: What Remains Landing Page Template
                         </div> 
                         <?php } ?> 
                     
-                        <?php if($link_to_text){?>
-                        <div class="standard_button_look">
-                            <a href="/what-remains-text" ><h2 class="can_be_clicked"><?php echo $link_to_text?></h2></a>
-                        </div>
-                        <?php }?>
+                 
                     </div>
    
                 </div>
                 <div  class="videocolumn maxWidthColumn">
                     <?php if( $is_festival_live == "yes"){?>
                         <div class="spacer"></div>
-                        <div class="spacer"></div>
                         <h1><?php echo  $featured_films_headline?></h1>
                         <?php echo do_shortcode('[featured_videos]'); ?>
                     
                    <?php }?>
                    <?php if( $is_festival_live != "yes"){?>
-                        <div class="spacer"></div>
                         <div class="spacer"></div>
                         <h1><?php echo  $featured_films_headline?></h1>
                         <?php echo do_shortcode('[all_videos]'); ?>

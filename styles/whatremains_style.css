@@ -19,7 +19,9 @@
 @font-face {
     font-family: 'Franklin Gothic Book';
     src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff2') format('woff2'),
-        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff') format('woff');
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.woff') format('woff'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.ttf') format('ttf');
+        ;
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -28,20 +30,13 @@
 @font-face {
     font-family: 'Franklin Gothic';
     src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff2') format('woff2'),
-        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff') format('woff');
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff') format('woff'),
+        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.ttf') format('ttf');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
-/* @font-face {
-    font-family: 'Franklin Gothic';
-    src: url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-MediumItalic.woff2') format('woff2'),
-        url('https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-MediumItalic.woff') format('woff');
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-} */
 
 
 
@@ -100,6 +95,7 @@ p{
     font-weight: 400;
     font-size: var(--smallSize);
     text-align: justify;
+    word-wrap: normal;
 }
 h4{
     text-align: justify;
@@ -116,6 +112,14 @@ h4{
     font-weight: 700;
     font-size: 30px;
 }
+.blockcontent h3:nth-child(1){
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    max-width: 450px;
+    margin-top: 0;
+}
+
 
 
 
@@ -208,7 +212,7 @@ h4{
     .what_remains_footer{
         position: relative;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         align-items: flex-start;
         z-index: 2;
         width: 100%;
@@ -314,7 +318,6 @@ h4{
     margin-bottom: 0 !important;
 }
 
-
 .phase_details{
     position: absolute;
     bottom: 0;
@@ -341,21 +344,21 @@ h4{
 }
 
 .entry-title{
-    padding-bottom: var(--regPadding);
-    margin-bottom: 40px;
+    padding-bottom: 0;
+    margin-bottom: 0px;
 }
 
 
 
 .phase_details h1:nth-child(2),
 .entry-title h1:nth-child(2){
-   font-size: 50px;
+   font-size: 35px;
 }
 
 
 .entry-title h1:nth-child(3){
     font-size: 30px;
-    max-width: 500px;
+    max-width: 450px;
  }
 
 .content-navigation{
@@ -414,8 +417,13 @@ h4{
     max-width: 100%;
     width: 100%;
     min-height: 200px;
+
+}
+.list-item{
     margin-bottom: 50px;
-}@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 900px) {
     .thumbnail {
       padding-bottom: 110px;
     }
@@ -441,7 +449,7 @@ h4{
 
 .program_item{
     margin-top: var(--regPadding);
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .program_row{
@@ -450,16 +458,16 @@ h4{
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.program_row .thumbnail{
+.program_row .thumbnail_container{
    width: 49%;
 }@media screen and (max-width: 1300px) {
-    .program_row .thumbnail{
+    .program_row  .thumbnail_container .thumbnail{
         padding-bottom: 110px;
      }
 }@media screen and (max-width: 1050px) {
-    .program_row .thumbnail{
+    .program_row .thumbnail_container{
         width: 100%;
-        padding-bottom: 0px;
+        /* padding-bottom: 0px; */
      }
 }
 

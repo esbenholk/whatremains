@@ -14,12 +14,15 @@ Template Name: What Remains Landing Page Template
 
     <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.woff" as="font" type="font/woff2" crossorigin="anonymous">
+   
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Medium.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" href="https://videoclub.org.uk/wp2018/wp-content/plugins/whatremains-plugin/fonts/FranklinGothic-Book.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
 
 
     <?php  
-        // $id ='13';
-        $id ='3868';
+        $id ='13';
+        // $id ='3868';
         $sitename = esc_html( get_post_meta(  $id ,'sitename', true ) ); 
         $sitedates = esc_html( get_post_meta( $id , 'sitedates', true ) ); 
         $homelink= esc_html( "/what-remains" ); 
@@ -118,9 +121,10 @@ Template Name: What Remains Landing Page Template
                     <div class="standard_button_look">
                         <a href="/what-remains-text" ><h2 class="can_be_clicked"><?php echo $link_to_text?></h2></a>
                     </div>
+                    <div class="spacer"></div>
+
             <?php }?>  
               
-            <div class="spacer"></div>
 
              <div id="program">
                 <h1><?php echo  $featured_talks_headline?></h1>

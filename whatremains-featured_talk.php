@@ -3,13 +3,16 @@
       'post_type' => 'talk_post',
       'post_status' => 'publish',
       'posts_per_page' => -1, 
-      'orderby' => 'title', 
-      'order' => 'ASC', 
+      'orderby'           => array( 'meta_value_num' => 'ASC' ),
+      'meta_key' => 'specific_date',
     );
 
   $loop = new WP_Query( $args ); 
 
-  
+  $url = 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+
+
+
   
   
   while ( $loop->have_posts() ) : $loop->the_post(); 
@@ -19,14 +22,17 @@
                 $talk_date = esc_html( get_post_meta( $post->ID, 'talk_date', true ) );
                 $thumbnail_src = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
                 $outputString = preg_replace('/\s+/', '', $talk_name); 
-                $link = "/about-what-remains#$outputString";
+                // $link = "/about-what-remains#$outputString";
+                $link = "/about-what-remains#program";
                 $sign_up_link = esc_html( get_post_meta( $post->ID, 'sign_up_link', true ) ); 
                 $link_text = esc_html( get_post_meta( $post->ID, 'link_text', true ) ); ?>
 
+            <div class="thumbnail_container">
 
             <div class="thumbnail" id="<?php echo  $outputString?>">
+                    <a href="<?php echo  $sign_up_link?>"> <img src="<?php echo $thumbnail_src?>" /> </a>
 
-                    <img src="<?php echo $thumbnail_src?>" /> 
+                   
 
                     <div class="gradient_overlay"> </div>   
 
@@ -51,14 +57,18 @@
                                 </div>
                             
                         <?php }?>
-                            
-
-    
 
                     </div>
-                                        
-  
             </div>
+
+           <?php if (strpos($url,'about') !== false) {?>
+
+                <div class="contentcolumn blockcontent list-item">
+                        <?php the_content(); ?>
+                </div>
+            <?php }?>
+
+            </div>                          
 
      <?php             
 endwhile;

@@ -102,6 +102,11 @@ function my_admin() {
     'display_talk_meta_box',
     'talk_post', 'normal', 'high'
     );
+    add_meta_box( 'video_meta_box',
+    'Video Details',
+    'display_video_meta_box',
+    'talk_post', 'normal', 'high'
+    );
 }
 
 
@@ -479,7 +484,7 @@ function include_template_function( $template_path ) {
 
 ////ENQUEE STYLESHEET FOR SUB PAGES
 function wpse_enqueue_page_template_styles() {
-    if ( get_post_type() == 'video_post' || is_page( 'what-remains' ) || is_page( 'about-what-remains' ) || is_page( 'what-remains-text' )   ) {
+    if ( get_post_type() == 'video_post' || get_post_type() == 'talk_post' || is_page( 'what-remains' ) || is_page( 'about-what-remains' ) || is_page( 'what-remains-text' )   ) {
         wp_enqueue_style( 'whatremains_style', plugins_url( '/styles/whatremains_style.css', __FILE__ ) );
         wp_enqueue_script( 'whatremains_js', plugins_url( '/js/whatremains_js.js', __FILE__ ) );
     }
